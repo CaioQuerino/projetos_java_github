@@ -31,7 +31,9 @@ public class ServicoConta {
         }
     }
 
-    public void consultarSaldo() {}
+    public void consultarSaldo() {
+        System.out.printf("Saldo atual: R$%.2f\n", conta.getSaldo());
+    }
 
     public Conta getConta() {
         return conta;
