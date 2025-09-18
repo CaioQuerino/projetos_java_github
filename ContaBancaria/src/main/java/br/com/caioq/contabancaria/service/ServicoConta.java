@@ -21,7 +21,15 @@ public class ServicoConta {
         }
     }
     
-    public void depositar(double valor) {}
+    public void depositar(double valor) {
+        conta.setValor(valor);
+        if (valor <= 0) {
+            System.out.println("Valor inválido para depósito!");
+        } else {
+            conta.setSaldo(conta.getSaldo() + conta.getValor());
+            System.out.printf("Depósito realizado! Novo saldo: R$%.2f\n", conta.getSaldo());
+        }
+    }
 
     public void consultarSaldo() {}
 
