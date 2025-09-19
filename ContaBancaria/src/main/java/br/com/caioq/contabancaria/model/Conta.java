@@ -2,12 +2,18 @@ package br.com.caioq.contabancaria.model;
 
 public class Conta {
     private double saldo;
-    private double valor;
+    private String nome;
+    private String senha;
+    private int agencia;
 
-    public Conta() {
+    public Conta(String nome, String senha, int agencia) {
         this.saldo = 0;
+        this.nome = nome;
+        this.senha = senha;
+        this.agencia = agencia;
     }
 
+    // Getters e Setters
     public double getSaldo() {
         return saldo;
     }
@@ -16,11 +22,27 @@ public class Conta {
         this.saldo = saldo;
     }
 
-    public double getValor() {
-        return valor;
+    public String getNome() {
+        return nome;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public int getAgencia() {
+        return agencia;
+    }
+
+    public void setAgencia(int agencia) {
+        this.agencia = agencia;
     }
 }
