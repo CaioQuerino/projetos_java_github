@@ -10,23 +10,21 @@ public class ServicoConta {
     }
 
     public void sacar(double valor) {
-        conta.setValor(valor);
         if (valor <= 0) {
             System.out.println("Valor inválido para saque!");
         } else if (valor > conta.getSaldo()) {
             System.out.println("Saldo insuficiente!");
         } else {
-            conta.setSaldo(conta.getSaldo() - conta.getValor());
+            conta.setSaldo(conta.getSaldo() - valor);
             System.out.printf("Saque realizado! Novo saldo: R$%.2f\n", conta.getSaldo());
         }
     }
     
     public void depositar(double valor) {
-        conta.setValor(valor);
         if (valor <= 0) {
             System.out.println("Valor inválido para depósito!");
         } else {
-            conta.setSaldo(conta.getSaldo() + conta.getValor());
+            conta.setSaldo(conta.getSaldo() + valor);
             System.out.printf("Depósito realizado! Novo saldo: R$%.2f\n", conta.getSaldo());
         }
     }
@@ -37,9 +35,5 @@ public class ServicoConta {
 
     public Conta getConta() {
         return conta;
-    }
-    
-    public Conta setConta(Conta conta) {
-        return this.conta = conta;
     }
 }
