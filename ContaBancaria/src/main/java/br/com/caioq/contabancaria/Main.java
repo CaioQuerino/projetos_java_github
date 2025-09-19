@@ -22,6 +22,8 @@ public class Main {
         
         if (logado) {
             // Operações bancárias
+            System.out.printf("Nome: %s\n", usuario.getConta().getNome());
+            System.out.printf("Agê: %s\n", usuario.getConta().getAgencia());
             servicoConta.depositar(1000);
             servicoConta.sacar(250);
             servicoConta.consultarSaldo();
