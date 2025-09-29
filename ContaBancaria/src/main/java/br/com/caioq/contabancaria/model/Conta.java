@@ -49,7 +49,6 @@ public class Conta {
             System.out.println("CPF Invalido!");
             return;
         }
-        System.out.println("CPF Valido!");
         this.cpf = cpf;
     }
     

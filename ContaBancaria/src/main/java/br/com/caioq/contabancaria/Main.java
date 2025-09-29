@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         // Criando uma conta
         
-        Conta conta = new Conta("Paula", "2426915803", "123", 1234);
+        Conta conta = new Conta("Paula", "24269158034", "123", 1234);
         
         // Criando usuário
         Usuario usuario = new Usuario(conta);
@@ -18,10 +18,9 @@ public class Main {
         ServicoConta servicoConta = new ServicoConta(conta);
         ServicoUsuario servicoUsuario = new ServicoUsuario(usuario);
         
-        // Validação não passou por aqui
+        // Tentativa de login
         
-        /*
-        boolean logado = servicoUsuario.login("24269158034", "123");
+        boolean logado = servicoUsuario.login("2426915803", "123");
         
         if (logado) {
             // Operações bancárias
@@ -31,6 +30,6 @@ public class Main {
             servicoConta.sacar(250);
             servicoConta.consultarSaldo();
             System.out.println("\nTitular da conta: " + usuario.getConta().getNome());
-        } */
+        }
     }
 }
