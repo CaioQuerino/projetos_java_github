@@ -45,8 +45,11 @@ public class Conta {
     }
     
     private void setCPF(String cpf) {
-        if(!isValidCPF(cpf)) return;
-        
+        if(!isValidCPF(cpf)) {
+            System.out.println("CPF Invalido!");
+            return;
+        }
+        System.out.println("CPF Valido!");
         this.cpf = cpf;
     }
     
