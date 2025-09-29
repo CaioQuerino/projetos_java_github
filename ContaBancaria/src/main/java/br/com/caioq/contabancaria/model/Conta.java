@@ -7,20 +7,22 @@ public class Conta {
     private String nome;
     private String cpf;
     private String senha;
-    private int agencia;
-    private ServicoValidadores servicoValidadores = new ServicoValidadores();
+    private String agencia;
+    private final String conta;
+    private final ServicoValidadores servicoValidadores = new ServicoValidadores();
 
-    public Conta(String nome, String cpf, String senha, int agencia) {
+    public Conta(String nome, String cpf, String senha, String agencia, String conta) {
         this.saldo = 0;
         this.nome = nome;
         this.setCPF(cpf);
         this.senha = senha;
         this.agencia = agencia;
+        this.conta = conta;
     }
-    
 
-    private boolean isValidCPF(String cpf) {
-       return servicoValidadores.validarCPF(cpf);
+ 
+    private boolean isValidCpf(String cpf) {
+        return servicoValidadores.validarCPF(cpf);
     }
 
     // Getters e Setters
@@ -45,8 +47,9 @@ public class Conta {
     }
     
     private void setCPF(String cpf) {
-        if(!isValidCPF(cpf)) return;
-        
+        if (!isValidCpf(cpf)) {
+            throw new IllegalArgumentException("CPF inválido: " + cpf);
+        }
         this.cpf = cpf;
     }
     
@@ -58,11 +61,15 @@ public class Conta {
         this.senha = senha;
     }
 
-    public int getAgencia() {
+    public String getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
+    public void setAgencia(String agencia) {
         this.agencia = agencia;
+    }
+    
+    public String getConta() {
+        return conta;
     }
 }
