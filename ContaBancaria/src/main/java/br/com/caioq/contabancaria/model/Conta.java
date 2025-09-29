@@ -1,16 +1,26 @@
 package br.com.caioq.contabancaria.model;
 
+import br.com.caioq.contabancaria.service.ServicoValidadores;
+
 public class Conta {
     private double saldo;
     private String nome;
+    private String cpf;
     private String senha;
     private int agencia;
+    private ServicoValidadores servicoValidadores = new ServicoValidadores();
 
-    public Conta(String nome, String senha, int agencia) {
+    public Conta(String nome, String cpf, String senha, int agencia) {
         this.saldo = 0;
         this.nome = nome;
+        this.setCPF(cpf);
         this.senha = senha;
         this.agencia = agencia;
+    }
+    
+
+    private boolean isValidCPF(String cpf) {
+       return servicoValidadores.validarCPF(cpf);
     }
 
     // Getters e Setters
@@ -29,7 +39,17 @@ public class Conta {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    
+    public String getCPF() {
+        return cpf;
+    }
+    
+    private void setCPF(String cpf) {
+        if(!isValidCPF(cpf)) return;
+        
+        this.cpf = cpf;
+    }
+    
     public String getSenha() {
         return senha;
     }
