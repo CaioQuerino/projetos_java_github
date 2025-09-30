@@ -3,28 +3,42 @@ package br.com.caioq.contabancaria.service;
 import org.springframework.stereotype.Service;
 import br.com.caioq.contabancaria.model.Conta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ServicoConta {
 
-    public void depositar(Conta conta, double valor) {
-        conta.setSaldo(conta.getSaldo() + valor);
-        System.out.println("Depósito de R$" + valor + " realizado. Saldo atual: R$" + conta.getSaldo());
-    }
+    private final List<Conta> contas = new ArrayList<>();
+    private Long contadorId = 1L;
 
-    public void sacar(Conta conta, double valor) {
-        if (conta.getSaldo() >= valor) {
-            conta.setSaldo(conta.getSaldo() - valor);
-            System.out.println("Saque de R$" + valor + " realizado. Saldo atual: R$" + conta.getSaldo());
-        } else {
-            System.out.println("Saldo insuficiente!");
-        }
-    }
-
-    public void consultarSaldo(Conta conta) {
-        System.out.println("Saldo atual: R$" + conta.getSaldo());
-    }
-
-    public Conta getConta(Conta conta) {
+    public Conta criarConta(Conta conta) {
+        conta.setId(this.contadorId++);
+        contas.add(conta);
         return conta;
+    }
+
+    public List<Conta> listarContas() {
+        return contas;
+    }
+
+    public Conta buscarPorId(Long id) {
+        return contas.stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Conta atualizarConta(Long id, Conta contaAtualizada) {
+        Conta conta = buscarPorId(id);
+        if (conta != null) {
+            conta.setTitular(contaAtualizada.getTitular());
+            conta.setSaldo(contaAtualizada.getSaldo());
+        }
+        return conta;
+    }
+
+    public void deletarConta(Long id) {
+        contas.removeIf(c -> c.getId().equals(id));
     }
 }
