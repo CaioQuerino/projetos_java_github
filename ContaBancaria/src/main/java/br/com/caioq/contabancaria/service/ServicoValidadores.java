@@ -1,5 +1,8 @@
 package br.com.caioq.contabancaria.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ServicoValidadores {
     public boolean validarCPF(String cpf) {
         if (cpf == null) return false;

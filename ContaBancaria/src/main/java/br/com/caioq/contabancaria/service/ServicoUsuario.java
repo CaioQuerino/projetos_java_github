@@ -1,21 +1,26 @@
 package br.com.caioq.contabancaria.service;
 
+
+import org.springframework.stereotype.Service;
+import br.com.caioq.contabancaria.model.Conta;
 import br.com.caioq.contabancaria.model.Usuario;
 
+@Service
 public class ServicoUsuario {
-    final Usuario usuario;
 
-    public ServicoUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    public boolean login(String cpf, String agencia, String numeroConta, 
+                                         String senha, Usuario usuario) {
+        Conta c = usuario.getConta();
+        if (c == null) {
+            System.out.println("Usuário não possui conta!");
+            return false;
+        }
 
-    public boolean login(String cpf, String agencia, String conta, String senha) {
-               
-        if (usuario.getConta().getAgencia().equals(agencia) && 
-            usuario.getConta().getConta().equals(conta) &&
-            usuario.getConta().getSenha().equals(senha) &&
-            usuario.getConta().getUsuario().getCPF().equals(cpf)
-            ) {
+        if (c.getAgencia().equals(agencia) &&
+            c.getConta().equals(numeroConta) &&
+            c.getSenha().equals(senha) &&
+            usuario.getCPF().equals(cpf)) {
+
             System.out.println("Usuário logado com sucesso!");
             return true;
         } else {
