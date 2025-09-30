@@ -14,7 +14,7 @@ public class ServicoUsuario {
         if (usuario.getConta().getAgencia().equals(agencia) && 
             usuario.getConta().getConta().equals(conta) &&
             usuario.getConta().getSenha().equals(senha) &&
-            usuario.getConta().getCPF().equals(cpf)
+            usuario.getConta().getUsuario().getCPF().equals(cpf)
             ) {
             System.out.println("Usuário logado com sucesso!");
             return true;

@@ -3,7 +3,7 @@ package br.com.caioq.contabancaria.service;
 import br.com.caioq.contabancaria.model.Conta;
 
 public class ServicoConta {
-    private Conta conta;
+    private final Conta conta;
 
     public ServicoConta(Conta conta) {
         this.conta = conta;
