@@ -1,30 +1,37 @@
 package br.com.caioq.contabancaria.service;
 
-
 import org.springframework.stereotype.Service;
-import br.com.caioq.contabancaria.model.Conta;
 import br.com.caioq.contabancaria.model.Usuario;
+import br.com.caioq.contabancaria.service.ServicoValidadores;
 
 @Service
 public class ServicoUsuario {
 
-    public boolean login(String cpf, String agencia, String numeroConta, 
-                                         String senha, Usuario usuario) {
-        Conta c = usuario.getConta();
-        if (c == null) {
-            System.out.println("Usuário não possui conta!");
+    private final ServicoValidadores servicoValidadores;
+
+    public ServicoUsuario(ServicoValidadores servicoValidadores) {
+        this.servicoValidadores = servicoValidadores;
+    }
+
+    public boolean login(Usuario usuario) {
+        if (usuario == null || usuario.getConta() == null) {
+            System.out.println("Usuário ou conta nula");
+            return false;
+        } 
+
+        if (!servicoValidadores.validarCPF(usuario.getCPF())) {
+            System.out.println("CPF inválido");
             return false;
         }
 
-        if (c.getAgencia().equals(agencia) &&
-            c.getConta().equals(numeroConta) &&
-            c.getSenha().equals(senha) &&
-            usuario.getCPF().equals(cpf)) {
+        if (usuario.getConta().getAgencia().equals(usuario.getConta().getAgencia()) &&
+            usuario.getConta().getConta().equals(usuario.getConta().getConta()) &&
+            usuario.getConta().getSenha().equals(usuario.getConta().getSenha())) {
 
-            System.out.println("Usuário logado com sucesso!");
+            System.out.println("Usuário logado com sucesso");
             return true;
         } else {
-            System.out.println("Dados incorretos!");
+            System.out.println("Dados incorretos");
             return false;
         }
     }
