@@ -1,0 +1,41 @@
+@startuml title Diagrama de Classes - Sistema Bancário
+
+class Usuario {
+    - nome: String
+    - cpf: String
+    - conta: Conta
+    + getNome(): String
+    + setNome(String)
+    + getCPF(): String
+    + setCPF(String)
+    + getConta(): Conta
+}
+
+class Conta {
+    - saldo: double
+    - senha: String
+    - agencia: String
+    - numero: String
+    - usuario: Usuario
+    + depositar(double)
+    + sacar(double)
+    + consultarSaldo(): double
+}
+
+class ServicoUsuario {
+    - usuario: Usuario
+    + login(cpf: String, agencia: String, conta: String, senha: String): boolean
+}
+
+class ServicoConta {
+    - conta: Conta
+    + depositar(valor: double)
+    + sacar(valor: double)
+    + consultarSaldo()
+}
+
+Usuario "1" --> "1" Conta : possui >
+ServicoUsuario --> Usuario
+ServicoConta --> Conta
+
+@enduml
